@@ -1,18 +1,20 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import data from '../Data/data.json'
+import './Table.css'
 
 const columns = [
+    //Columns of the table
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'firstName', headerName: 'First name', width: 100 },
     { field: 'lastName', headerName: 'Last name', width: 100 },
-    { field: 'email', headerName: 'Email', width: 150, sortable: false },
-    { field: 'gender', headerName: 'Gender', width: 100, sortable: false },
-    { field: 'ip_address', headerName: 'IP address', width: 150, sortable: false },
-    { field: 'airport_code', headerName: 'Airport Code', width: 100, sortable: false },
-    { field: 'time', headerName: 'Time', width: 100, sortable: false },
-    { field: 'mobile', headerName: 'Mobile', width: 100, sortable: false },
-    { field: 'area', headerName: 'Area', width: 100, sortable: false },
+    { field: 'email', headerName: 'Email', width: 150 },
+    { field: 'gender', headerName: 'Gender', width: 100 },
+    { field: 'ip_address', headerName: 'IP address', width: 150 },
+    { field: 'airport_code', headerName: 'Airport Code', width: 130 },
+    { field: 'time', headerName: 'Time', width: 100 },
+    { field: 'mobile', headerName: 'Mobile', width: 100 },
+    { field: 'area', headerName: 'Area', width: 100 },
     {
         field: 'fullName',
         headerName: 'Full name',
@@ -24,6 +26,7 @@ const columns = [
     },
 ];
 
+//Iterating the data and mapping it to the columns
 const rows = data.map((item, index) => {
     return {
         id: index,
@@ -39,13 +42,28 @@ const rows = data.map((item, index) => {
     }
 })
 
+
 export default function DataTable() {
     return (
         <div style={{ height: '100vh', width: '100%' }}>
             <DataGrid
+                sx={{
+                    '.MuiDataGrid-columnHeaderTitleContainer': {
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                    },
+                    '.MuiDataGrid-cell:hover': {
+                        cursor: 'pointer',
+                    },
+                    '.MuiDataGrid-row:hover': {
+                        boxShadow: '1px 1px 13px gray',
+                        transition: 'all 0.2s ease-in-out',
+                    }
+                }}
                 rows={rows}
                 columns={columns}
-                pageSize={15}
+                pageSize={15} // Pagination
                 rowsPerPageOptions={[5]}
                 checkboxSelection
             />
