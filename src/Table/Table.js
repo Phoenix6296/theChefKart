@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import data from '../Data/data.json'
-import './Table.css'
 
 const columns = [
     //Columns of the table
